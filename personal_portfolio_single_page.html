@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio ส่วนตัว</title>
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --accent:#6ee7b7;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071127 0%, #071a2b 100%);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
+    .wrap{width:100%;max-width:980px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.7);backdrop-filter:blur(6px)}
+    header{display:flex;gap:24px;align-items:center}
+    .avatar{width:140px;height:140px;border-radius:12px;overflow:hidden;flex:0 0 140px;border:2px solid rgba(255,255,255,0.06);background:var(--glass);display:flex;align-items:center;justify-content:center}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .title{flex:1}
+    h1{margin:0;font-size:26px;letter-spacing:0.4px}
+    .meta{color:var(--muted);margin-top:6px}
+    .tag{display:inline-block;padding:6px 10px;background:linear-gradient(90deg, rgba(110,231,183,0.12), rgba(110,231,183,0.06));border-radius:999px;color:var(--accent);font-weight:600;margin-top:10px}
+
+    main{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:22px}
+    .section{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .section h2{margin:0 0 8px 0;font-size:16px}
+    .bio p{margin:0;color:#dce9f6;line-height:1.6}
+    .interests ul{margin:8px 0 0 18px;color:var(--muted)}
+    .right .card-mini{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.03);margin-bottom:12px}
+    .skills{display:flex;gap:8px;flex-wrap:wrap}
+    .skill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-size:13px}
+    .contact a{display:inline-block;margin-right:10px;color:var(--accent);text-decoration:none}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:880px){main{grid-template-columns:1fr;}.avatar{width:112px;height:112px;flex:0 0 112px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="avatar">
+          <!-- ใส่รูปของคุณ: แทนที่ src ด้วยภาพจริง เช่น ./images/me.jpg -->
+          <img src="S01.jpg" alt="Profile">
+        </div>
+        <div class="title">
+          <h1>ชื่อ นาย กฤตชัย คิดอ่าน (รหัสนักศึกษา: 67319010023)</h1>
+          <div class="meta">เทคโนโลยีสารสนเทศ / นักพัฒนาซอฟต์แวร์</div>
+          <div class="tag">นักศึกษา / นักออกแบบ | ผู้เรียนรู้ตลอดชีวิต</div>
+        </div>
+      </header>
+
+      <main>
+        <div class="section bio">
+          <h2>ประวัติสั้น ๆ</h2>
+          <p>
+            ย่อประวัติของคุณที่นี่  ฉันเป็นนักศึกษาในสาขาเทคโนโลยีสารสนเทศ สถานที่เรียนเทคนิคลำปาง สนใจเรื่องการออกแบบ Network มีทักษะเด่นด้านการออกแบบ กับ คุมคนนิดหน่อย สนใจด้านเว็บดีไซน์และ UX/UI ทำโปรเจกต์จบเกี่ยวกับการออกแบบแอปเพื่อการศึกษา
+            
+          </p>
+
+          <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+
+          <h2>ความสนใจ</h2>
+          <div class="interests">
+            <ul>
+              <li>ออกแบบเว็บไซต์และประสบการณ์ผู้ใช้ (UX/UI)</li>
+              <li>การพัฒนาเว็บด้วย HTML/CSS/JavaScript</li>
+              <li>งานกราฟิกและภาพประกอบ</li>
+              <li>การออกแบบระบบNetwork</li>
+            </ul>
+          </div>
+
+          <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+
+          <h2>โครงการ / ผลงานเด่น</h2>
+          <p style="color:var(--muted)">ยังไม่มีกำลังอยู่ช่วงพัฒนา</p>
+        </div>
+
+        <aside class="right">
+          <div class="card-mini section">
+            <h2>ทักษะ</h2>
+            <div class="skills">
+              <span class="skill">HTML</span>
+              <span class="skill">CSS</span>
+              <span class="skill">canva</span>
+             
+            </div>
+          </div>
+
+          <div class="card-mini section contact">
+            <h2>ติดต่อ</h2>
+            <p class="meta" style="margin:6px 0">อีเมล:kill876ggwp@gmail.com</p>
+            <p style="margin:6px 0">โทร: 064-453-8519</p>
+            <div style="margin-top:8px">
+              <a href="#">LinkedIn</a>
+              <a href="#">007x</a>
+            </div>
+          </div>
+
+          <div class="card-mini section">
+            <h2>ทักษะที่กำลังจะพัฒนาไหนอนาคต</h2>
+            <div class="interests">
+              <ul>
+                <li>ถ่ายรูป</li>
+                <li>วาดรูป</li>
+                <li>การพูด</li>
+                <li>การออกแบบระบบNetwork</li>
+              </ul>
+            </div>
+            <div style="display:flex;gap:8px">
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        © <span id="year"></span> ชื่อ นาย กฤตชัย คิดอ่าน • อีเมล: kill876ggwp@gmail.com
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // ปรับอัตโนมัติปีปัจจุบัน
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
