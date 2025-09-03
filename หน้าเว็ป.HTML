@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ทีมงาน 4 คน — คลิกดูข้อมูล</title>
+  <style>
+    :root{
+      --bg:#f7fafc;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0ea5a4;
+      --shadow: 0 6px 18px rgba(15,23,42,0.08);
+      --radius:14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .page{
+      max-width:1100px;
+      margin:48px auto;
+      padding:24px;
+    }
+
+    header h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-0.3px;
+    }
+    header p{
+      margin:6px 0 20px 0;
+      color:var(--muted);
+    }
+
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(1,1fr);
+      gap:18px;
+    }
+    @media(min-width:600px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(min-width:980px){ .grid{ grid-template-columns:repeat(4,1fr); } }
+
+    /* Card */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      cursor:pointer;
+      border:1px solid rgba(15,23,42,0.04);
+      transition:transform .18s ease, box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
+      text-align:left;
+    }
+    .card:focus, .card:hover{ transform:translateY(-6px); box-shadow: 0 12px 30px rgba(15,23,42,0.12); outline:none; }
+    .thumb{
+      width:100%;
+      aspect-ratio:4/5;
+      object-fit:cover;
+      display:block;
+      background:#e6eef0;
+    }
+    .meta{
+      padding:12px 14px;
+    }
+    .name{
+      font-weight:600;
+      font-size:16px;
+      margin:0 0 4px 0;
+    }
+    .role{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(2,6,23,0.45);
+      display:none;
+      place-items:center;
+      z-index:50;
+      padding:20px;
+    }
+    .modal{
+      width:100%;
+      max-width:720px;
+      background:var(--card);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow: 0 30px 80px rgba(2,6,23,0.35);
+      transform:translateY(12px) scale(.99);
+      transition:transform .18s ease, opacity .18s ease;
+      opacity:0;
+      max-height:85vh;
+      display:flex;
+      flex-direction:column;
+    }
+    .modal.open{ transform:translateY(0) scale(1); opacity:1; }
+    .modal-hero{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+    .modal-body{ padding:18px 20px; overflow:auto; }
+    .modal-title{ font-size:20px; margin:0 0 4px 0; }
+    .modal-role{ color:var(--muted); margin:0 0 12px 0; font-size:14px; }
+    .modal-bio{ color:#0f172a; line-height:1.6; margin:8px 0 12px 0; }
+    .contact-list{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+    .contact-item{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:10px;
+      background:#f8fafb;
+      color:#0f172a;
+      text-decoration:none;
+      font-size:14px;
+      border:1px solid rgba(15,23,42,0.03);
+    }
+
+    .modal-footer{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 20px; border-top:1px solid rgba(15,23,42,0.04);
+    }
+    .close-btn{
+      background:transparent;
+      border:0;
+      font-size:14px;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+    /* small helper */
+    .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>ทีมงานของเรา</h1>
+      <p>คลิกที่รูปเพื่อดูข้อมูลเพิ่มเติม — รองรับคีย์บอร์ด (Enter / Esc)</p>
+    </header>
+
+    <main>
+      <div class="grid" id="peopleGrid">
+        <!-- Cards ถูกสร้างจาก JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" id="modal">
+      <img src="" alt="" class="modal-hero" id="modalImage">
+      <div class="modal-body">
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <p id="modalRole" class="modal-role"></p>
+        <div id="modalDesc" class="modal-bio"></div>
+
+        <div class="contact-list" id="contacts"></div>
+      </div>
+
+      <div class="modal-footer">
+        <small style="color:var(--muted)">© <span id="year"></span> ทีมงาน</small>
+        <button class="close-btn" id="closeBtn">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ข้อมูลตัวอย่าง 4 คน — แก้ไขได้ตามต้องการ
+    const PEOPLE = [
+      {
+        id:1,
+        name:"สุธิดา กาญจน์",
+        role:"นักออกแบบผลิตภัณฑ์",
+        bio:"เชี่ยวชาญด้านแพ็กเกจจิ้ง มินิมอล เน้นวัสดุเป็นมิตรต่อสิ่งแวดล้อมและควบคุมต้นทุนการผลิต",
+        image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop",
+        email:"suthida@example.com",
+        phone:"+66812345678",
+        website:"https://example.com/suthida"
+      },
+      {
+        id:2,
+        name:"กฤษณะ พงศา",
+        role:"วิศวกรซอฟต์แวร์",
+        bio:"ถนัดพัฒนาเว็บแอปด้วย React และ Node.js โฟกัสเรื่องสถาปัตยกรรมและประสิทธิภาพ",
+        image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop",
+        email:"kris@example.com",
+        phone:"+66823456789",
+        website:"https://example.com/kris"
+      },
+      {
+        id:3,
+        name:"ณัฐชา จิตดี",
+        role:"คอนเทนต์มาร์เก็ตติ้ง",
+        bio:"วางกลยุทธ์คอนเทนต์บนโซเชียลมีเดีย โดยใช้ข้อมูลช่วยตัดสินใจ เน้น conversion",
+        image:"https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200&auto=format&fit=crop",
+        email:"natcha@example.com",
+        phone:"+66834567890",
+        website:"https://example.com/natcha"
+      },
+      {
+        id:4,
+        name:"ธีรภัทร มีสุข",
+        role:"ช่างภาพ / ตัดต่อ",
+        bio:"ประสบการณ์ถ่ายสินค้าและบุคคลกว่า 6 ปี ชำนาญการจัดแสงและเล่าเรื่องผ่านภาพ",
+        image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop",
+        email:"teerapat@example.com",
+        phone:"+66845678901",
+        website:"https://example.com/teerapat"
+      }
+    ];
+
+    const grid = document.getElementById('peopleGrid');
+    const backdrop = document.getElementById('backdrop');
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalRole = document.getElementById('modalRole');
+    const modalDesc = document.getElementById('modalDesc');
+    const contacts = document.getElementById('contacts');
+    const closeBtn = document.getElementById('closeBtn');
+    const yearSpan = document.getElementById('year');
+
+    yearSpan.textContent = new Date().getFullYear();
+
+    // สร้างการ์ดใน DOM
+    PEOPLE.forEach(person => {
+      const btn = document.createElement('button');
+      btn.className = 'card';
+      btn.type = 'button';
+      btn.setAttribute('aria-haspopup','dialog');
+      btn.setAttribute('aria-label', `ดูข้อมูล ${person.name}`);
+      btn.innerHTML = `
+        <img class="thumb" src="${person.image}" alt="รูปของ ${person.name}" loading="lazy">
+        <div class="meta">
+          <p class="name">${person.name}</p>
+          <p class="role">${person.role}</p>
+        </div>
+      `;
+      // เปิด modal เมื่อคลิกหรือกด Enter
+      btn.addEventListener('click', () => openModal(person));
+      btn.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(person); }
+      });
+      grid.appendChild(btn);
+    });
+
+    function openModal(person){
+      modalImage.src = person.image;
+      modalImage.alt = `รูปของ ${person.name}`;
+      modalTitle.textContent = person.name;
+      modalRole.textContent = person.role;
+      modalDesc.textContent = person.bio;
+
+      // สร้างปุ่มติดต่อ
+      contacts.innerHTML = '';
+      if(person.email){
+        const a = document.createElement('a');
+        a.className = 'contact-item';
+        a.href = `mailto:${person.email}`;
+        a.textContent = `อีเมล: ${person.email}`;
+        contacts.appendChild(a);
+      }
+      if(person.phone){
+        const a = document.createElement('a');
+        a.className = 'contact-item';
+        a.href = `tel:${person.phone.replace(/\s+/g,'')}`;
+        a.textContent = `โทร: ${person.phone}`;
+        contacts.appendChild(a);
+      }
+      if(person.website){
+        const a = document.createElement('a');
+        a.className = 'contact-item';
+        a.href = person.website;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = 'เว็บไซต์ส่วนตัว';
+        contacts.appendChild(a);
+      }
+
+      // show
+      backdrop.style.display = 'grid';
+      backdrop.setAttribute('aria-hidden','false');
+      // allow CSS transition
+      requestAnimationFrame(() => {
+        modal.classList.add('open');
+      });
+
+      // trap focus minimally: focus close button
+      closeBtn.focus();
+
+      // close on backdrop click
+      backdrop.addEventListener('click', backdropClick);
+      // close key listener
+      document.addEventListener('keydown', escHandler);
+    }
+
+    function closeModal(){
+      modal.classList.remove('open');
+      backdrop.setAttribute('aria-hidden','true');
+      // hide after transition
+      setTimeout(() => { backdrop.style.display = 'none'; }, 180);
+      backdrop.removeEventListener('click', backdropClick);
+      document.removeEventListener('keydown', escHandler);
+    }
+
+    function backdropClick(e){
+      if(e.target === backdrop) closeModal();
+    }
+
+    function escHandler(e){
+      if(e.key === 'Escape') closeModal();
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Accessibility: allow focusing cards by tab
+    // (buttons are focusable by default)
+  </script>
+</body>
+</html>

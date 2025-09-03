@@ -3,18 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio ส่วนตัว</title>
+  <title>My Portfolio</title>
   <style>
     :root{
-      --bg:#0f1724; /* dark navy */
-      --card:#0b1220;
-      --accent:#6ee7b7;
-      --muted:#9aa4b2;
-      --glass: rgba(255,255,255,0.04);
+  --bg:#0b1f1a;
+  --card:#142822;
+  --accent:#4ade80;
+  --muted:#a3b3ad;
+  --glass: rgba(255,255,255,0.05);
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#071127 0%, #071a2b 100%);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
+    body{margin:0;
+  color:#e6eef6;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+
+  background-image: url("green.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    }
     .wrap{width:100%;max-width:980px}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.7);backdrop-filter:blur(6px)}
     header{display:flex;gap:24px;align-items:center}
@@ -46,12 +58,13 @@
     <div class="card">
       <header>
         <div class="avatar">
-          <!-- ใส่รูปของคุณ: แทนที่ src ด้วยภาพจริง เช่น ./images/me.jpg -->
-          <img src="S01.jpg" alt="Profile">
+          
+          <img src="044Gay.jpg" alt="Profile">
+
         </div>
         <div class="title">
-          <h1>ชื่อ นาย กฤตชัย คิดอ่าน (รหัสนักศึกษา: 67319010023)</h1>
-          <div class="meta">เทคโนโลยีสารสนเทศ / นักพัฒนาซอฟต์แวร์</div>
+          <h1>ชื่อ โจนาธาน แมคกราช (รหัสนักศึกษา: 67319010044)</h1>
+          <div class="meta">สาขาวิชา / คณะ IT เมืองลำปาง, ประเทศไทย</div>
           <div class="tag">นักศึกษา / นักออกแบบ | ผู้เรียนรู้ตลอดชีวิต</div>
         </div>
       </header>
@@ -60,8 +73,8 @@
         <div class="section bio">
           <h2>ประวัติสั้น ๆ</h2>
           <p>
-            ย่อประวัติของฉันเป็นนักศึกษาในสาขาเทคโนโลยีสารสนเทศ สถานที่เรียนเทคนิคลำปาง สนใจเรื่องการออกแบบ Network มีทักษะเด่นด้านการออกแบบ กับ คุมคนนิดหน่อย สนใจด้านเว็บดีไซน์และ UX/UI ทำโปรเจกต์จบเกี่ยวกับการออกแบบแอปเพื่อการศึกษา
-            
+            เกิดวันที่ 21 กรกฎาคม 2547 อายุ 21 ปี สูง 183 ซม. หนัก 89 กก. ที่อยู่ 393 หมู่ 2 ต.นาแก้ว อ.เกาะคา จ.ลำปาง ศึกษา วท.เทคโนโลยีลำปาง 
+สาขาเทคโนโลยีสารสนเทศ มีความสนใจเรื่องการออกแบบ UX/UI เพื่อพัฒนาทักษะและความรู้ในด้านนี้ ในอนาคตอยากทำงานในสายงานนี้ และทำโปรเจกต์ร่วม เชื่อมกับการออกแบบแอปเพื่อการศึกษา
           </p>
 
           <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
@@ -72,14 +85,14 @@
               <li>ออกแบบเว็บไซต์และประสบการณ์ผู้ใช้ (UX/UI)</li>
               <li>การพัฒนาเว็บด้วย HTML/CSS/JavaScript</li>
               <li>งานกราฟิกและภาพประกอบ</li>
-              <li>การออกแบบระบบNetwork</li>
+              <li>การเรียนรู้ด้วยเครื่องและการวิเคราะห์ข้อมูล (สนใจศึกษาเพิ่มเติม)</li>
             </ul>
           </div>
 
           <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
 
           <h2>โครงการ / ผลงานเด่น</h2>
-          <p style="color:var(--muted)">ยังไม่มีกำลังอยู่ช่วงพัฒนา</p>
+          <p style="color:var(--muted)">ยังไม่มีโครงการ</p>
         </div>
 
         <aside class="right">
@@ -88,46 +101,41 @@
             <div class="skills">
               <span class="skill">HTML</span>
               <span class="skill">CSS</span>
-              <span class="skill">canva</span>
-             
+              <span class="skill">JavaScript</span>
+              <span class="skill">Figma</span>
+              <span class="skill">Git</span>
             </div>
           </div>
 
           <div class="card-mini section contact">
             <h2>ติดต่อ</h2>
-            <p class="meta" style="margin:6px 0">อีเมล:kill876ggwp@gmail.com</p>
-            <p style="margin:6px 0">โทร: 064-453-8519</p>
-            <p style="margin:6px 0">FB:Krittachai Khitarn</p>
+            <p class="meta" style="margin:6px 0">อีเมล: jonathanjame047@gmail.com</p>
+            <p style="margin:6px 0">โทร: 098-359-5497</p>
             <div style="margin-top:8px">
-              <a href="#">LineID</a>
-              <a href="#">064-453-8519</a>
+              <a href="#">LinkedIn</a>
+              <a href="#">GitHub</a>
             </div>
           </div>
 
           <div class="card-mini section">
-            <h2>ทักษะที่กำลังจะพัฒนาไหนอนาคต</h2>
-            <div class="interests">
-              <ul>
-                <li>ถ่ายรูป</li>
-                <li>วาดรูป</li>
-                <li>การพูด</li>
-                <li>การออกแบบระบบNetwork</li>
-              </ul>
-            </div>
+            <h2>ดาวน์โหลด</h2>
+            <p style="color:var(--muted);margin:8px 0">ดาวน์โหลดประวัติย่อ (PDF) หรือไฟล์ผลงานได้จากที่นี่</p>
             <div style="display:flex;gap:8px">
+              <a href="#" style="padding:8px 10px;border-radius:8px;background:rgba(110,231,183,0.08);color:var(--accent);text-decoration:none;font-weight:600">Resume</a>
+              <a href="#" style="padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted);text-decoration:none">Portfolio</a>
             </div>
           </div>
         </aside>
       </main>
 
       <footer>
-        © <span id="year"></span> ชื่อ นาย กฤตชัย คิดอ่าน • อีเมล: kill876ggwp@gmail.com
+        © <span id="year"></span> ชื่อ โจนาธาน แมคกราช • อีเมล: jonathanjame047@gmail.com    
       </footer>
     </div>
   </div>
 
   <script>
-    // ปรับอัตโนมัติปีปัจจุบัน
+    
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>

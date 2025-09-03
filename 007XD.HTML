@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Project</title>
+  
+  <style>
+    .title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 40px;
+    color: #87b6e2;
+  }
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("Bgay.jpg");
+      margin: 0;
+      padding: 20px;
+      font-family: "Story Script", cursive;
+    }
+
+    .grid {
+      display: flex;
+      justify-content: center;   /* จัดให้อยู่ตรงกลาง */
+      gap: 20px;                 /* ระยะห่างระหว่างการ์ด */
+      flex-wrap: nowrap;         /* ไม่ให้ตัดบรรทัด */
+      overflow-x: auto;          /* เลื่อนแนวนอนได้ถ้าหน้าจอเล็ก */
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      width: 220px;
+      flex: 0 0 auto;            /* คงขนาดคงที่ใน flex */
+      text-decoration: none;
+      color: #111;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .thumb {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .meta {
+      padding: 12px;
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 6px 0;
+    }
+
+    .role {
+      font-size: 14px;
+      color: #555;
+      margin: 0;
+    }
+    
+  </style>
+</head>
+<body>
+    <h2 class="title">สมาชิก</h2>
+    <h2 class="title">Project</h2>
+  <div class="grid" id="peopleGrid">
+    
+  </div>
+
+  <script>
+    const PEOPLE = [
+      {
+        name:"นายกฤตชัย คิดอ่าน",
+        role:"67319010023",
+        image:"S01.jpg",
+        website: "023.HTML"
+      },
+      {
+        name:"นายเมธัส อินต๊ะสงค์",
+        role:"67319010028",
+        image:"028Pro.jpg",
+        website:"028.html"
+      },
+      {
+        name:"นายธนลภย์ ทองใบ",
+        role:"67319010039",
+        image:"039SoGay.jpg",
+        website:"039.html"
+      },
+      {
+        name:"นายโจนาธาน แมคกราช",
+        role:"67319010044",
+        image:"044Gay.jpg",
+        website:"044.html"
+      }
+    ];
+
+    const grid = document.getElementById('peopleGrid');
+
+    PEOPLE.forEach(p => {
+      const card = document.createElement('a');
+      card.href = p.website;
+      card.target = "_blank";
+      card.className = "card";
+      card.innerHTML = `
+        <img class="thumb" src="${p.image}" alt="รูปของ ${p.name}">
+        <div class="meta">
+          <p class="name">${p.name}</p>
+          <p class="role">${p.role}</p>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
