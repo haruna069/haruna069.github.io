@@ -16,4 +16,4 @@ It mini-devops-project in 30901-2008 การพัฒนาซอฟต์แ�
 
 ฝึก 80 วัน ในสถานประกอบการที่ฝึกประสบการณ์วิชาชีพ ใน มทร ล้านนาลำปาง ด้วยกัน
 
-<a href="028personal_portfolio.html" style="padding:8px 10px;border-radius:8px;background:rgb(255, 255, 255);color:var(--accent);text-decoration:none;font-weight:600">Work here</a>
+<a href="007XD.html" style="padding:8px 10px;border-radius:8px;background:rgb(255, 255, 255);color:var(--accent);text-decoration:none;font-weight:600">Work here</a>
